@@ -43,12 +43,20 @@ Bill.prototype.isTotalTips = function(diners){
 	return tipTotal
 }
 
+// Bill.prototype.isBillBreakdown = function(diners){
+// 	var billBreakdown = diners.map(function(item){
+// 		item["dinerTotal"] = (item.isTotalOfDishes(item.dishes)) + (item.isTaxForDiner(item.isTotalOfDishes(item.dishes)))
+// 		item["dinerTip"] = item.isTipForDiner(item.isTotalOfDishes(item.dishes))
+// 		return diners
+// 	})
+// 	return diners
+// }
+
 Bill.prototype.isBillBreakdown = function(diners){
-	var billBreakdown = diners.map(function(item){
-		item["dinerTotal"] = (item.isTotalOfDishes(item.dishes)) + (item.isTaxForDiner(item.isTotalOfDishes(item.dishes)))
-		item["dinerTip"] = item.isTipForDiner(item.isTotalOfDishes(item.dishes))
-		return diners
-	})
+	for(var i=0; i<diners.length; i++){
+		diners[i["dinerTotal"]] = (diners[i].isTotalOfDishes(diners[i].dishes)) + (diners[i].isTaxForDiner(diners[i].isTotalOfDishes(diners[i].dishes)))
+		diners[i["dinerTip"]] = diners[i].isTipForDiner(diners[i].isTotalOfDishes(diners[i].dishes))
+	}
 	return diners
 }
 
