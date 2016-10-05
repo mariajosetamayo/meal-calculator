@@ -26,7 +26,7 @@ Diner.prototype.isTipForDiner = function(total){
 var Bill = function(diners){
 	this.diners = diners;
 }
-
+//Method to calculate the total bill
 Bill.prototype.isTotalBill = function(diners){
 	var billTotalArray = diners.map(function(item){
 		return (item.isTotalOfDishes(item.dishes)) + (item.isTaxForDiner(item.isTotalOfDishes(item.dishes)))
@@ -34,7 +34,7 @@ Bill.prototype.isTotalBill = function(diners){
 	var billTotal = billTotalArray.reduce((a, b) => a + b, 0);
 	return billTotal
 }
-
+// Method to calculate the total tips
 Bill.prototype.isTotalTips = function(diners){
 	var totalTipArray = diners.map(function(item){
 		return (item.isTipForDiner(item.isTotalOfDishes(item.dishes)))
@@ -42,24 +42,14 @@ Bill.prototype.isTotalTips = function(diners){
 	var tipTotal = totalTipArray.reduce((a, b) => a + b, 0);
 	return tipTotal
 }
-
-// Bill.prototype.isBillBreakdown = function(diners){
-// 	var billBreakdown = diners.map(function(item){
-// 		item["dinerTotal"] = (item.isTotalOfDishes(item.dishes)) + (item.isTaxForDiner(item.isTotalOfDishes(item.dishes)))
-// 		item["dinerTip"] = item.isTipForDiner(item.isTotalOfDishes(item.dishes))
-// 		return diners
-// 	})
-// 	return diners
-// }
-
+// Method to breakdown the bill among diners
 Bill.prototype.isBillBreakdown = function(diners){
-	for(var i=0; i<diners.length; i++){
-		diners[i["dinerTotal"]] = (diners[i].isTotalOfDishes(diners[i].dishes)) + (diners[i].isTaxForDiner(diners[i].isTotalOfDishes(diners[i].dishes)))
-		diners[i["dinerTip"]] = diners[i].isTipForDiner(diners[i].isTotalOfDishes(diners[i].dishes))
-	}
+	var billBreakdown = diners.forEach(function(item){
+		item["dinerTotal"] = (item.isTotalOfDishes(item.dishes)) + (item.isTaxForDiner(item.isTotalOfDishes(item.dishes)))
+		item["dinerTip"] = item.isTipForDiner(item.isTotalOfDishes(item.dishes))
+	})
 	return diners
 }
-
 
 // Diner objects
 var diner1 = Object.create(Diner.prototype)
@@ -75,7 +65,8 @@ diner3.dishes = {salad:15, cake:7}
 // Bill object
 var billForDiners = Object.create(Bill.prototype)
 billForDiners.diners = [diner1,diner2,diner3]
-billForDiners.isTotalBill(billForDiners.diners)
-billForDiners.isTotalTips(billForDiners.diners)
-billForDiners.isBillBreakdown(billForDiners.diners)
+// Variables containing the total bill, the total tip and the diners'bill breakdown
+var totalBill = billForDiners.isTotalBill(billForDiners.diners)
+var totalTip = billForDiners.isTotalTips(billForDiners.diners)
+var dinersBillBreakdown = billForDiners.isBillBreakdown(billForDiners.diners)
 
