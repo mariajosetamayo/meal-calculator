@@ -17,7 +17,7 @@ class Diner extends Person {
 	totalPriceOfDishes(dishes) {
 		let dinerTotal = 0;
   		for( let key in dishes) {
-    		if( dishes.hasOwnProperty(key)) {
+    			if( dishes.hasOwnProperty(key)) {
       			dinerTotal += parseFloat(dishes[key]);
     		}
   		}
