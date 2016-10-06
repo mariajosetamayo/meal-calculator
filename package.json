@@ -2,13 +2,8 @@
   "name": "meal_calculator",
   "version": "0.0.0",
   "description": "A meal cost calculator",
-  "main": "mean_calculator.js",
+  "main": "meal_calculator.js",
   "scripts": {
-    "mkdir": "mkdir -p build",
-    "clean": "rm -rf build",
-    "build:js": "npm run clean:js && webpack",
-    "watch:js": "npm run build:js && webpack --watch",
-    "clean:js": "rm -f build/$npm_package_name.$npm_package_version.js build/$npm_package_name.$npm_package_version.js.map"
   },
   "keywords": [
     "meal",
