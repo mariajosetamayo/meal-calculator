@@ -16,7 +16,7 @@ class Diner extends Person {
 	// Method to calculate total bill of dishes consumed
 	totalPriceOfDishes(dishes) {
 		let dinerTotal = 0;
-  		for( var key in dishes) {
+  		for( let key in dishes) {
     		if( dishes.hasOwnProperty(key)) {
       			dinerTotal += parseFloat(dishes[key]);
     		}
@@ -48,11 +48,10 @@ class Bill {
 	}
 	// Method to calculate the total tips
 	totalTips(diners) {
-		let totalTipArray = diners.map((item) => {
+		const totalTipArray = diners.map((item) => {
 			return (item.tipForDiner(item.totalPriceOfDishes(item.dishes)));
 		});
-		let tipTotal = totalTipArray.reduce((a, b) => a + b, 0);
-		return tipTotal;
+		return totalTipArray.reduce((a, b) => a + b, 0);
 	}
 	// Method to breakdown the bill among diners
 	billBreakdown(diners) {
