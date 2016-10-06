@@ -1,3 +1,4 @@
+// Statement so code can run with node in terminal
 "use strict"; 
 // Object constructor for a Person
 class Person {
